@@ -1,5 +1,6 @@
 from Domain.vanzare import get_str, creeaza_vanzare
 from Logic.crud import create, update, delete
+from Logic.functionalitati import add_discount
 
 
 def show_menu():
@@ -32,7 +33,6 @@ def handle_delete(vanzari):
     vanzari = delete(vanzari, id_vanzare)
     print('Stergerea a fost efectuata cu succes!')
     return vanzari
-
 
 
 def handle_crud(vanzari):
@@ -70,11 +70,11 @@ def run_ui(vanzari):
         optiune = input("Alege optiunea: ")
         if optiune == '1':
             vanzari = handle_crud(vanzari)
+        elif optiune == '2':
+            print("Reducerea a fost aplicata cu succes!")
+            vanzari = add_discount(vanzari)
         elif optiune == 'x':
             break
         else:
             print('Optiune invalida!')
     return vanzari
-
-
-

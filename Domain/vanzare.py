@@ -1,6 +1,6 @@
-def creeaza_vanzare(id_vanzare: int, titlu_carte, gen_carte, pret, tip_reducere_client):
+def creeaza_vanzare(id_vanzare: int, titlu_carte: str, gen_carte: str, pret: float, tip_reducere_client: str):
     """
-    Creeaza o vanzare.
+    Creeaza o vanzare(dictionar).
     :param id_vanzare: id-ul vanzarii, trebuie sa fie unic.
     :param titlu_carte: titlul cartii, nenul
     :param gen_carte: genul cartii, nenul
@@ -63,4 +63,6 @@ def get_reducere(vanzare):
 
 
 def get_str(vanzare):
-    return f'Vanzarea cu id-ul {get_id(vanzare)} are titlul cartii {get_titlu(vanzare)}, genul cartii {get_gen(vanzare)}, pretul {get_pret(vanzare)} si tipul de reducere acordata clientului {get_reducere(vanzare)} '
+    return f'Vanzarea cu id-ul {get_id(vanzare)} are titlul cartii {get_titlu(vanzare)},' \
+           f' genul cartii {get_gen(vanzare)}, pretul {get_pret(vanzare)} si tipul de reducere acordata clientului' \
+           f' {get_reducere(vanzare)}. '
