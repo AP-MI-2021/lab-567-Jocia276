@@ -1,4 +1,4 @@
-from Domain.vanzare import get_pret
+from Domain.vanzare2 import get_pret
 from Logic.crud import create, read
 from Logic.functionalitati import add_gold_discount, add_silver_discount, add_discount
 

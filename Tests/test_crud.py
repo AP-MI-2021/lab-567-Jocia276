@@ -1,4 +1,4 @@
-from Domain.vanzare import creeaza_vanzare, get_id
+from Domain.vanzare2 import creeaza_vanzare, get_id
 from Logic.crud import create, read, update, delete
 
 
@@ -29,7 +29,7 @@ def test_read():
     vanzari = get_data()
     some_v = vanzari[2]
     assert read(vanzari, get_id(some_v)) == some_v
-    #assert read(vanzari, None) == vanzari
+    assert read(vanzari, None) == vanzari
 
 
 def test_update():

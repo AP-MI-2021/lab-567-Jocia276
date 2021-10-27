@@ -1,4 +1,4 @@
-from Domain.vanzare import creeaza_vanzare, get_id
+from Domain.vanzare2 import creeaza_vanzare, get_id
 
 
 def create(lst_vanzari, id_vanzare: int, titlu_carte: str, gen_carte: str, pret: float, tip_reducere_client: str):

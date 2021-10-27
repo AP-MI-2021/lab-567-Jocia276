@@ -1,4 +1,4 @@
-from Domain.vanzare import get_str, creeaza_vanzare
+from Domain.vanzare2 import get_str, creeaza_vanzare
 from Logic.crud import create, update, delete
 from Logic.functionalitati import add_discount
 

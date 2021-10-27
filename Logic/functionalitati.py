@@ -1,4 +1,4 @@
-from Domain.vanzare import get_id, get_titlu, get_gen, get_pret, get_reducere, creeaza_vanzare
+from Domain.vanzare2 import get_id, get_titlu, get_gen, get_pret, get_reducere, creeaza_vanzare
 from Logic.crud import update
 
 
