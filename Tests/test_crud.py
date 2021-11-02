@@ -24,6 +24,14 @@ def test_create():
             found = True
     assert found
 
+    params2 = (27, 'Ion', 'Actiune', 30, 'none')
+    try:
+        some_p = create(new_vanzari, *params2)
+        assert False
+    except ValueError:
+        assert True
+
+
 
 def test_read():
     vanzari = get_data()

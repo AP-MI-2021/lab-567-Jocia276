@@ -1,6 +1,7 @@
 from Logic.crud import create
 from Tests.test_crud import test_crud
-from Tests.test_functionalitati import test_functionalitati
+from Tests.test_discount import test_discount
+from Tests.test_modificare_gen import test_modificare_gen
 from Userinterface.console import run_ui
 
 
@@ -16,5 +17,6 @@ def main():
 
 if __name__ == '__main__':
     test_crud()
-    test_functionalitati()
+    test_discount()
+    test_modificare_gen()
     main()

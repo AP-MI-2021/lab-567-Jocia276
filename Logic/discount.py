@@ -2,7 +2,7 @@ from Domain.vanzare2 import get_id, get_titlu, get_gen, get_pret, get_reducere, 
 from Logic.crud import update
 
 
-def add_silver_discount(pret: float):
+def add_silver_discount(pret: float) -> float:
     """
     Returneaza pretul dupa ce a fost aplicat un dicount de 5% (discount de tip silver)
     :param pret:pret initial
@@ -12,7 +12,7 @@ def add_silver_discount(pret: float):
     return pret - discount
 
 
-def add_gold_discount(pret: float):
+def add_gold_discount(pret: float) -> float:
     """
     Returneaza pretul dupa ce a fost aplicat un discount de 10% (discount de tip gold)
     :param pret:pret initial
@@ -35,15 +35,15 @@ def add_discount(vanzari: list):
         id_vanzare = get_id(vanzare)
         titlu_carte = get_titlu(vanzare)
         gen_carte = get_gen(vanzare)
-        pret = get_pret(vanzare)
+        pret_nou = get_pret(vanzare)
         tip_reducere_client = get_reducere(vanzare)
 
         if tip_reducere_client == 'silver':
-            pret = add_silver_discount(pret)
-            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret, tip_reducere_client))
+            pret_nou = add_silver_discount(pret_nou)
+            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client))
 
         elif tip_reducere_client == 'gold':
-            pret = add_gold_discount(pret)
-            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret, tip_reducere_client))
+            pret_nou = add_gold_discount(pret_nou)
+            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client))
 
     return vanzari

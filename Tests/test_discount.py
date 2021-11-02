@@ -1,6 +1,6 @@
 from Domain.vanzare2 import get_pret
 from Logic.crud import create, read
-from Logic.functionalitati import add_gold_discount, add_silver_discount, add_discount
+from Logic.discount import add_gold_discount, add_silver_discount, add_discount
 
 
 def test_add_gold_discount():
@@ -33,7 +33,7 @@ def test_add_discount():
     assert get_pret(read(vanzari, 5)) == 100
 
 
-def test_functionalitati():
+def test_discount():
     test_add_silver_discount()
     test_add_gold_discount()
     test_add_discount()
