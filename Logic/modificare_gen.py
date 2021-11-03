@@ -1,5 +1,7 @@
-# modificarea genului pentru un titlu dat
 from Domain.vanzare2 import get_titlu, get_id, get_pret, get_reducere, creeaza_vanzare
+
+# 4.3
+# modificarea genului pentru un titlu dat
 
 
 def modificare_gen(lst_vanzari, titlul, gen_nou):
@@ -11,8 +13,8 @@ def modificare_gen(lst_vanzari, titlul, gen_nou):
     :return: O noua lista de vanzari ce contine noul gen al cartii.
     """
 
-    if titlul == '':
-        raise ValueError('Titlul cartii careia vrem sa ii modificam genul nu poate fi gol.')
+    if titlul == '' or gen_nou == '':
+        raise ValueError('Titlul si genul cartii careia vrem sa ii modificam genul nu poate fi gol.')
 
     result = []
 

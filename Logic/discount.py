@@ -1,6 +1,8 @@
 from Domain.vanzare2 import get_id, get_titlu, get_gen, get_pret, get_reducere, creeaza_vanzare
 from Logic.crud import update
 
+# 4.2
+# Aplicarea unui discount de `5%` pentru toate reducerile silver si `10%` pentru toate reducerile gold.
 
 def add_silver_discount(pret: float) -> float:
     """
