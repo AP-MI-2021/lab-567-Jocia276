@@ -40,7 +40,6 @@ def handle_update(vanzari):
     return vanzari
 
 
-
 def handle_delete(vanzari):
     try:
         id_vanzare = int(input("Dati id-ul vanzarii care se va sterge: "))
@@ -57,7 +56,6 @@ def handle_show_all(vanzari):
             print(get_str(vanzare))
     except ValueError as ve:
         print('Eroare', ve)
-
 
 
 def handle_crud(vanzari):
@@ -94,14 +92,14 @@ def handle_discount(vanzari):
 
 
 def handle_modificare_gen(vanzari):
-     try:
+    try:
         titlul = input('Dati titlul cartii pentru care se va modifica genul: ')
         gen_nou = input('Dati noul gen al cartii: ')
         vanzari = modificare_gen(vanzari, titlul, gen_nou)
         print('Genul cartii a fost modificat cu succes!  ')
-     except ValueError as ve:
-         print('Eroare: ', ve)
-     return vanzari
+    except ValueError as ve:
+        print('Eroare: ', ve)
+    return vanzari
 
 
 def run_ui(vanzari):

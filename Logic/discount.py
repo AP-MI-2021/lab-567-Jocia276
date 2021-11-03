@@ -36,8 +36,6 @@ def add_discount(vanzari: list):
     :return: o noua lista, ce contine preturile modificate dupa reducere ale cartilor, cat si restul datelor
             ale acestora
     """
-
-
     for vanzare in vanzari:
 
         id_vanzare = get_id(vanzare)
@@ -48,10 +46,12 @@ def add_discount(vanzari: list):
 
         if tip_reducere_client == 'silver':
             pret_nou = add_silver_discount(pret_nou)
-            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client))
+            creeaza_vanzare1 = creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client)
+            vanzari = update(vanzari, creeaza_vanzare1)
 
         elif tip_reducere_client == 'gold':
             pret_nou = add_gold_discount(pret_nou)
-            vanzari = update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client))
+            creeaza_vanzare1 = creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret_nou, tip_reducere_client)
+            vanzari = update(vanzari, creeaza_vanzare1)
 
     return vanzari

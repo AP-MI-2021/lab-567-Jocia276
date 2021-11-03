@@ -32,7 +32,6 @@ def test_create():
         assert True
 
 
-
 def test_read():
     try:
         vanzari = get_data()

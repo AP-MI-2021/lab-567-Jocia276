@@ -23,7 +23,6 @@ def test_add_silver_discount():
         print('Assertion error at test_add_silver_discount!')
 
 
-
 def test_add_discount():
     try:
         vanzari = []
