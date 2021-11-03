@@ -34,29 +34,38 @@ def test_create():
 
 
 def test_read():
-    vanzari = get_data()
-    some_v = vanzari[2]
-    assert read(vanzari, get_id(some_v)) == some_v
-    assert read(vanzari, None) == vanzari
+    try:
+        vanzari = get_data()
+        some_v = vanzari[2]
+        assert read(vanzari, get_id(some_v)) == some_v
+        assert read(vanzari, None) == vanzari
+    except AssertionError:
+        print('Assertion error at test_read!')
 
 
 def test_update():
-    vanzari = get_data()
-    v_updated = creeaza_vanzare(1, 'new title', 'Drama', 45, 'None')
-    updated = update(vanzari, v_updated)
-    assert v_updated in updated
-    assert v_updated not in vanzari
-    assert len(updated) == len(vanzari)
+    try:
+        vanzari = get_data()
+        v_updated = creeaza_vanzare(1, 'new title', 'Drama', 45, 'None')
+        updated = update(vanzari, v_updated)
+        assert v_updated in updated
+        assert v_updated not in vanzari
+        assert len(updated) == len(vanzari)
+    except AssertionError:
+        print('Assertion error at test_update!')
 
 
 def test_delete():
-    vanzari = get_data()
-    to_delete = 3
-    v_deleted = read(vanzari, to_delete)
-    deleted = delete(vanzari, to_delete)
-    assert v_deleted in vanzari
-    assert v_deleted not in deleted
-    assert len(deleted) == len(vanzari) - 1
+    try:
+        vanzari = get_data()
+        to_delete = 3
+        v_deleted = read(vanzari, to_delete)
+        deleted = delete(vanzari, to_delete)
+        assert v_deleted in vanzari
+        assert v_deleted not in deleted
+        assert len(deleted) == len(vanzari) - 1
+    except AssertionError:
+        print('Assertion error at test_delete!')
 
 
 def test_crud():

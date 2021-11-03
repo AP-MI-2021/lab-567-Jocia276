@@ -8,6 +8,9 @@ def add_silver_discount(pret: float) -> float:
     :param pret:pret initial
     :return: pretul dupa ce a fost aplicat un dicount de 5% (discount de tip silver)
     """
+    if pret <= 0:
+        raise ValueError('Cartea trebuie sa aiba un pret pozitiv!')
+
     discount = 5 * pret / 100
     return pret - discount
 
@@ -18,6 +21,9 @@ def add_gold_discount(pret: float) -> float:
     :param pret:pret initial
     :return: pretul dupa ce a fost aplicat un discount de 10% (discount de tip gold)
     """
+    if pret <= 0:
+        raise ValueError('Cartea trebuie sa aiba un pret pozitiv!')
+
     discount = 10 * pret / 100
     return pret - discount
 
@@ -30,6 +36,8 @@ def add_discount(vanzari: list):
     :return: o noua lista, ce contine preturile modificate dupa reducere ale cartilor, cat si restul datelor
             ale acestora
     """
+
+
     for vanzare in vanzari:
 
         id_vanzare = get_id(vanzare)

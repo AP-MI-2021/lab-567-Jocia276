@@ -17,7 +17,8 @@ def handle_add(vanzari):
         titlu_carte = input("Dati titlul cartii: ")
         gen_carte = input("Dati genul cartii: ")
         pret = float(input("Dati pretul vanzarii: "))
-        tip_reducere_client = input("Dati tipul de reducere acordata clientului: ")
+        tip_reducere_client = input("Dati tipul de reducere acordata clientului. Aceasta poate fi none, silver sau "
+                                    "gold: ")
         return create(vanzari, id_vanzare, titlu_carte, gen_carte, pret, tip_reducere_client)
     except ValueError as ve:
         print('Eroare: ', ve)
@@ -30,7 +31,8 @@ def handle_update(vanzari):
         titlu_carte = input("Dati noul titlu al cartii: ")
         gen_carte = input("Dati noul gen al cartii: ")
         pret = float(input("Dati noul pret al vanzarii: "))
-        tip_reducere_client = input("Dati noul tip de reducere acordata clientului: ")
+        tip_reducere_client = input("Dati noul tip de reducere acordata clientului. Aceasta poate fi none, silver sau "
+                                    "gold: ")
         print('Modificarea a fost efectuata cu succes!')
         return update(vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret, tip_reducere_client))
     except ValueError as ve:
@@ -47,6 +49,15 @@ def handle_delete(vanzari):
     except ValueError as ve:
         print('Eroare: ', ve)
     return vanzari
+
+
+def handle_show_all(vanzari):
+    try:
+        for vanzare in vanzari:
+            print(get_str(vanzare))
+    except ValueError as ve:
+        print('Eroare', ve)
+
 
 
 def handle_crud(vanzari):
@@ -73,14 +84,12 @@ def handle_crud(vanzari):
     return vanzari
 
 
-def handle_show_all(vanzari):
-    for vanzare in vanzari:
-        print(get_str(vanzare))
-
-
 def handle_discount(vanzari):
-    print("Reducerea a fost aplicata cu succes!")
-    vanzari = add_discount(vanzari)
+    try:
+        print("Reducerea a fost aplicata cu succes!")
+        vanzari = add_discount(vanzari)
+    except ValueError as ve:
+        print('Eroare: ', ve)
     return vanzari
 
 

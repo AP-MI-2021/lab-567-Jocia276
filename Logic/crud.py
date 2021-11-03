@@ -1,7 +1,7 @@
 from Domain.vanzare2 import creeaza_vanzare, get_id
 
 
-def create(lst_vanzari, id_vanzare: int, titlu_carte: str, gen_carte: str, pret: float, tip_reducere_client: str):
+def create(lst_vanzari, id_vanzare: int, titlu_carte: str, gen_carte: str, pret: float, tip_reducere_client):
     """
     Creeaza o vanzare.
     :param lst_vanzari: lista de vanzari
@@ -40,7 +40,6 @@ def read(lst_vanzari, id_vanzare: int = None):
     if vanzare_cu_id:
         return vanzare_cu_id
     return None
-
 
 
 def update(lst_vanzari, new_vanzare: int):
