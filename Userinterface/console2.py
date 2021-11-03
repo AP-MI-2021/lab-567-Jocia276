@@ -96,8 +96,8 @@ def handle_read2(vanzari, id_vanzare):
 def handle_discount2(lista_vanzari, comanda):
     try:
         comanda[1] = int(comanda[1])
-        lista_noua = add_discount(lista_vanzarit_vanzari, comanda)
-        vanzari = add_discount(lista_vanzarivanzari)
+        lista_noua = add_discount(lista_vanzari, comanda)
+        vanzari = add_discount(lista_vanzari)
     except ValueError as ve:
         print('Eroare: ', ve)
     return vanzari
