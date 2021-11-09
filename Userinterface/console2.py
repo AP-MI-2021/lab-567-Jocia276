@@ -1,143 +1,92 @@
-from Domain.vanzare2 import creeaza_vanzare, get_str, get_titlu, get_gen, get_pret, get_reducere
-from Logic.crud import create, update, delete, read
+from Domain.vanzare2 import get_str, creeaza_vanzare
+from Logic.crud import create, update, read, delete
 from Logic.discount import add_discount
 from Logic.modificare_gen import modificare_gen
 
 
-def show_menu2():
-    print(' Comenzi: ')
-    print(' add ')
-    print(' delete ')
-    print(' showall ')
-    print(' update ')
-    print(' details ')
-    print(' pret minim ')
-    print(' modificare gen ')
-    print(' quit ')
-
-
-def handle_details(vanzari, comanda):
-    try:
-        comanda[1] = int(comanda[1])
-        carte = read(vanzari, comanda[1])
-        print('Detaliile despre carte sunt: ')
-        print(f'Titlul este {get_titlu(carte)}')
-        print(f'Genul este {get_gen(carte)}')
-        print(f'Pretul este {get_pret(carte)}')
-        print(f'Tipul de reducere client este {get_reducere(carte)}')
-
-    except ValueError as ve:
-        print('Eroare: ', ve)
-
-
-def handle_showall2(lista_vanzari):
+def show_all(lista_vanzari):
     for vanzare in lista_vanzari:
         print(get_str(vanzare))
 
-def handle_add2(lista_vanzari,comanda):
+
+def adauga_vanzare(lista_vanzari, id_vanzare, titlu_carte, gen_carte, pret, tip_discount_client):
     try:
-        comanda[1] = int(comanda[1])
-        comanda[4] = int(comanda[4])
-        vanzari = create(lista_vanzari, comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
-        print('lista in urma adaugarii este ')
-        handle_showall2(vanzari)
+        return create(lista_vanzari, id_vanzare, titlu_carte, gen_carte, pret, tip_discount_client)
     except ValueError as ve:
-        print('eroare ', ve)
+        print("Eroare: ", ve)
     return lista_vanzari
 
-def handle_delete2(lista_vanzari,comanda):
+def modifica_vanzare(lista_vanzari, id_vanzare, titlu_carte, gen_carte, pret, tip_discount_client):
     try:
-        comanda[1] = int(comanda[1])
-        vanzari = delete(lista_vanzari, comanda[1])
-        print('Lista in urma stergerii este ')
-        handle_showall2(vanzari)
+        return update(lista_vanzari, creeaza_vanzare(id_vanzare, titlu_carte, gen_carte, pret, tip_discount_client))
     except ValueError as ve:
-        print('Eroare: ', ve)
+        print("Eroare: ", ve)
+    return lista_vanzari
 
-def handle_update2(lista_vanzari, comanda):
-
+def citeste_vanzare(lista_vanzari, id_vanzare):
     try:
-        comanda[1] = int(comanda[1])
-        comanda[4] = int(comanda[4])
-        vanzare_noua = creeaza_vanzare(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5])
-        carti = update(lista_vanzari, vanzare_noua)
-        print('Lista updatata este: ')
-        handle_showall2(carti)
-
+        return read(lista_vanzari, id_vanzare)
     except ValueError as ve:
-        print('Eroare: ', ve)
+        print("Eroare: ", ve)
+    return lista_vanzari
 
-
-def prelucrare_input(lista_comenzi):
-
-    comenzi = lista_comenzi.split(sep=";")
-
-    lst_comenzi = []
-    for comanda in comenzi:
-        comenzi_despartite_prin_spatiu = comanda.split(sep=",")
-        lst_comenzi.append(comenzi_despartite_prin_spatiu)
-
-    return lst_comenzi
-
-
-
-
-def handle_read2(vanzari, id_vanzare):
+def sterge_vanzare(lista_vanzari, id_vanzare):
     try:
-        print(' ')
-        result = read(vanzari, id_vanzare)
-        if result is None:
-            raise ValueError(f'Nu exista o cheltuiala cu ID-ul {id_vanzare} pe care sa o afisam')
-        print(get_str(result))
+        return delete(lista_vanzari, id_vanzare)
     except ValueError as ve:
-        print('Eroare: ', ve)
+        print("Eroare: ", ve)
+    return lista_vanzari
 
-
-def handle_discount2(lista_vanzari, comanda):
+def aplica_discount(lista_vanzari):
     try:
-        comanda[1] = int(comanda[1])
-        lista_noua = add_discount(lista_vanzari, comanda)
-        vanzari = add_discount(lista_vanzari)
+        return add_discount(lista_vanzari)
     except ValueError as ve:
-        print('Eroare: ', ve)
-    return vanzari
+        print("Eroare: ", ve)
+    return lista_vanzari
 
-
-def handle_modificare_gen2(lista_vanzari, comanda):
+def modificare_gen1(lista_vanzari, titlu, gen_nou):
     try:
-        comanda[1] = int(comanda[1])
-        lista_noua = modificare_gen(lista_vanzari, comanda[2], comanda[3])
-        print('Lista in urma modificarii genului este ')
-        for vanzare in lista_noua:
-            print(get_str(vanzare))
+        return modificare_gen(lista_vanzari, titlu, gen_nou)
     except ValueError as ve:
-        print('Eroare: ', ve)
+        print("Eroare: ", ve)
+    return lista_vanzari
+
+def help():
+    print("add ID nume clasa pret checkin facut -> adauga vanzare")
+    print("delete id -> sterge vanzare")
+    print("update id nume clasa pret checkin facut -> modifica vanzare")
+    print("showall -> afiseaza toate vanzarile")
+    print("discount -> aplicarea unui discount de 5% pentru toate reducerile silver si "
+          "10% pentru toate reducerile gold.")
+    print("modificare_gen -> modificarea genului pentru un titlu dat")
+    print("x -> opreste programul")
+
 
 def run_ui2(lista_vanzari):
-    ok = True
-    while ok == True:
-        show_menu2()
-        lista_comenzi = input('Dati comenzi despartite prin ; si parametrii prin , ')
-        lista_cu_comenzi = prelucrare_input(lista_comenzi)
 
-        for comanda in lista_cu_comenzi:
-            if comanda[0] == 'delete':
-                handle_delete2(lista_vanzari, comanda)
-            elif comanda[0] == 'add':
-                handle_add2(lista_vanzari, comanda)
-            elif comanda[0] == 'showall':
-                print('Lista de carti este: ')
-                handle_showall2(lista_vanzari)
-            elif comanda[0] == 'update':
-                handle_update2(lista_vanzari, comanda)
-            elif comanda[0] == 'details':
-                handle_details(lista_vanzari, comanda)
-            elif comanda[0] == 'add_discount':
-                handle_discount2(lista_vanzari)
-            elif comanda[0] == 'modificare gen':
-                handle_modificare_gen2(lista_vanzari, comanda)
-            elif comanda[0] == 'quit':
-                ok = False
-        if ok == False:
-            break
+    done = False
+    while not done:
+        mesaj = input('Introduceti comanda: ')
+        comanda = mesaj.split(";")
+        for i in range(len(comanda)):
+            optiuni = comanda[i].split(" ")
+            if optiuni[0] == 'exit':
+                done = True
+            elif optiuni[0] == "add":
+                    lista_vanzari = adauga_vanzare(lista_vanzari, optiuni[1], optiuni[2], optiuni[3], optiuni[4], optiuni[5])
+            elif optiuni[0] == "showall":
+                show_all(lista_vanzari)
+            elif optiuni[0] == "update":
+                lista_vanzari = modifica_vanzare(lista_vanzari, optiuni[1], optiuni[2], optiuni[3], optiuni[4], optiuni[5])
+            elif optiuni[0] == "delete":
+                    lista_vanzari = sterge_vanzare(lista_vanzari, optiuni[1])
+            elif optiuni[0] == "discount":
+                lista_vanzari = aplica_discount(lista_vanzari)
+            elif optiuni[0] == "gen":
+                lista_vanzari = modificare_gen1(lista_vanzari, optiuni[1], optiuni[2])
+            elif optiuni[0] == 'help':
+                help()
+            else:
+                print("Optiune gresita! Acceseaza comanda 'help'!")
+    return lista_vanzari
 

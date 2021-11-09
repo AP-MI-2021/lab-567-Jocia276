@@ -4,7 +4,8 @@ from Logic.modificare_gen import modificare_gen
 
 
 def test_modificare_gen():
-
+    undo_list = []
+    redo_list = []
     try:
         vanzari = []
         vanzari = create(vanzari, 1, 'Ion', 'schita', 50, 'silver')

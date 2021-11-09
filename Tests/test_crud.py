@@ -4,11 +4,12 @@ from Logic.crud import create, read, update, delete
 
 def get_data():
     return [
-        creeaza_vanzare(1, 'v1', 'SF', 50, 'silver'),
-        creeaza_vanzare(2, 'v2', 'Thriller', 45.5, 'gold'),
-        creeaza_vanzare(3, 'v3', 'Drama', 23, 'none'),
-        creeaza_vanzare(4, 'v4', 'Stiinta', 100, 'silver'),
-        creeaza_vanzare(5, 'v5', 'Crima', 35, 'none'),
+        creeaza_vanzare(1, 'Ion', 'roman', 50, 'silver'),
+        creeaza_vanzare(2, 'Enigma Otiliei', 'roman balzacian', 45.5, 'gold'),
+        creeaza_vanzare(3, 'Harap-Alb', 'basm', 23, 'none'),
+        creeaza_vanzare(4, 'Moara cu noroc', 'nuvela', 100, 'silver'),
+        creeaza_vanzare(5, 'O scrisoare pierduta', 'comedie', 35, 'gold'),
+        creeaza_vanzare(6, 'Morometii', 'roman', 12, 'none')
     ]
 
 

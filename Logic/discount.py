@@ -4,6 +4,7 @@ from Logic.crud import update
 # 4.2
 # Aplicarea unui discount de `5%` pentru toate reducerile silver si `10%` pentru toate reducerile gold.
 
+
 def add_silver_discount(pret: float) -> float:
     """
     Returneaza pretul dupa ce a fost aplicat un dicount de 5% (discount de tip silver)
@@ -38,6 +39,9 @@ def add_discount(vanzari: list):
     :return: o noua lista, ce contine preturile modificate dupa reducere ale cartilor, cat si restul datelor
             ale acestora
     """
+    if len(vanzari) == 0:
+        raise ValueError("Lista nu poate fi goala!")
+
     for vanzare in vanzari:
 
         id_vanzare = get_id(vanzare)
