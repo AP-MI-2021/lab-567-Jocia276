@@ -23,8 +23,3 @@ def nr_titluri_distincte(lst_vanzari):
             result[gen] = 1
             lst_titluri.append(titlu)
     return result
-
-
-
-
-

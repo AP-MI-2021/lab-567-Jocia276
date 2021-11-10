@@ -5,6 +5,7 @@ from Tests.test_modificare_gen import test_modificare_gen
 from Tests.test_nr_titluri_distincte import test_nr_titluri_distincte
 from Tests.test_ordonare_vanzari_dupa_pret import test_ordonare_vanzari_dupa_pret
 from Tests.test_pret_minim import test_pret_minim
+from Tests.test_undo_redo import test_undo_redo
 from Userinterface.console import run_ui
 
 
@@ -21,6 +22,7 @@ def main():
 
 
 if __name__ == '__main__':
+    test_undo_redo()
     test_pret_minim()
     test_nr_titluri_distincte()
     test_ordonare_vanzari_dupa_pret()

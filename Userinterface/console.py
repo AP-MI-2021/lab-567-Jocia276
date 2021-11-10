@@ -8,15 +8,19 @@ from Logic.pret_minim import get_pret_minim
 
 
 def show_menu():
-    print('1. CRUD')
-    print('2. Aplicare discount de 5% pentru toate reducerile silver, si 10% pentru toate reducerile gold.')
-    print('3. Modificarea genului cartii in functie de un titlu dat.')
-    print('4. Determinarea pretului minim pentru fiecare gen.')
-    print('5. Ordonarea vanzarilor crescator dupa pret.')
-    print('6. Afisarea numarului de titluri distincte pentru fiecare gen.')
+    print('1. Adaugare')
+    print('2. Modificare')
+    print('3. Stergere')
+    print('4. Aplicare discount de 5% pentru toate reducerile silver, si 10% pentru toate reducerile gold.')
+    print('5. Modificarea genului cartii in functie de un titlu dat.')
+    print('6. Determinarea pretului minim pentru fiecare gen.')
+    print('7. Ordonarea vanzarilor crescator dupa pret.')
+    print('8. Afisarea numarului de titluri distincte pentru fiecare gen.')
     print('u. Undo')
     print('r. Redo')
+    print('s. Showall')
     print('x. Exit')
+    print(' ')
 
 
 def handle_add(vanzari):
@@ -65,30 +69,6 @@ def handle_show_all(vanzari):
             print(get_str(vanzare))
     except ValueError as ve:
         print('Eroare', ve)
-
-
-def handle_crud(vanzari):
-    while True:
-        print('1. Adaugare')
-        print('2. Modificare')
-        print('3. Stergere')
-        print('a. Afisare')
-        print('b. Revenire')
-
-        optiune = input("Alege optiunea: ")
-        if optiune == '1':
-            vanzari = handle_add(vanzari)
-        elif optiune == '2':
-            vanzari = handle_update(vanzari)
-        elif optiune == '3':
-            vanzari = handle_delete(vanzari)
-        elif optiune == 'a':
-            handle_show_all(vanzari)
-        elif optiune == 'b':
-            break
-        else:
-            print('Optiune invalida!')
-    return vanzari
 
 
 def handle_discount(vanzari):
@@ -153,7 +133,7 @@ def handle_new_list(list_versions, current_version, vanzari):
 def handle_undo(list_versions, current_version):
     if current_version < 1:
         print("Nu se mai poate face undo.")
-        return
+        return [], 0
     current_version -= 1
     return list_versions[current_version], current_version
 
@@ -161,7 +141,7 @@ def handle_undo(list_versions, current_version):
 def handle_redo(list_versions, current_version):
     if current_version == len(list_versions) - 1:
         print("Nu se mai poate face redo.")
-        return
+        return list_versions[current_version], current_version
     current_version += 1
     return list_versions[current_version], current_version
 
@@ -176,27 +156,35 @@ def run_ui(vanzari):
         show_menu()
         optiune = input("Alege optiunea: ")
         if optiune == '1':
-            vanzari = handle_crud(vanzari)
+            vanzari = handle_add(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == '2':
-            vanzari = handle_discount(vanzari)
+            vanzari = handle_update(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == '3':
-            vanzari = handle_modificare_gen(vanzari)
+            vanzari = handle_delete(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == '4':
-            vanzari = handle_pret_minim(vanzari)
+            vanzari = handle_discount(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == '5':
-            vanzari = handle_ordonare_vanzari_dupa_pret(vanzari)
+            vanzari = handle_modificare_gen(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == '6':
+            vanzari = handle_pret_minim(vanzari)
+            list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
+        elif optiune == '7':
+            vanzari = handle_ordonare_vanzari_dupa_pret(vanzari)
+            list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
+        elif optiune == '8':
             vanzari = handle_nr_titluri_distincte(vanzari)
             list_versions, current_version = handle_new_list(list_versions, current_version, vanzari)
         elif optiune == 'u':
             vanzari, current_version = handle_undo(list_versions, current_version)
         elif optiune == 'r':
             vanzari, current_version = handle_redo(list_versions, current_version)
+        elif optiune == 's':
+            handle_show_all(vanzari)
         elif optiune == 'x':
             break
         else:

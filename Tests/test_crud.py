@@ -27,7 +27,7 @@ def test_create():
 
     params2 = (27, 'Ion', 'Actiune', 30, 'none')
     try:
-        some_p = create(new_vanzari, *params2)
+        create(new_vanzari, *params2)
         assert False
     except ValueError:
         assert True

@@ -1,14 +1,6 @@
 from Domain.vanzare2 import creeaza_vanzare, get_id
 
 
-def inverse_create(lst_vanzari, id_vanzare):
-    new_vanzari = []
-    for vanzare in lst_vanzari:
-        if get_id(vanzare) != id_vanzare:
-            new_vanzari.append(vanzare)
-    return new_vanzari
-
-
 def create(lst_vanzari, id_vanzare: int, titlu_carte: str, gen_carte: str, pret: float, tip_reducere_client):
     """
     Creeaza o vanzare.
